@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">mobileBookShop</string>
-    <string name="welcome_msg">Bienvenue sur notre application de vente de livres !</string>
+    <string name="client_last_name_label">Nom du client :</string>
+    <string name="client_last_name_placeholder">Entrez le nom du client</string>
+    <string name="client_first_name_label">Prénom du client :</string>
+    <string name="client_first_name_placeholder">Entrez le prénom du client</string>
+    <string name="new_client_checkbox">Nouveau client ?</string>
+    <string name="connection_button">Connexion</string>
 </resources>
