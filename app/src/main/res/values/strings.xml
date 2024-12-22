@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mobileBookShop</string>
+    <string name="welcome_msg">Bienvenue sur notre application de vente de livres !</string>
+</resources>
