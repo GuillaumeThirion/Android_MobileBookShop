@@ -5,7 +5,8 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" tools:context=".MainActivity">
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
     <TextView
             android:layout_width="match_parent"
@@ -23,7 +24,6 @@
             android:autofillHints=""
             android:inputType="text"
             android:hint="@string/client_last_name_placeholder"
-            tools:ignore="LabelFor"
             android:background="@android:drawable/edit_text"
     />
 
@@ -43,24 +43,23 @@
             android:autofillHints=""
             android:inputType="text"
             android:hint="@string/client_first_name_placeholder"
-            tools:ignore="LabelFor"
             android:background="@android:drawable/edit_text"
     />
 
     <CheckBox
             android:id="@+id/new_client_checkbox"
-            android:text="@string/new_client_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:text="@string/new_client_checkbox"
     />
 
     <Button
             android:id="@+id/connect_button"
-            android:text="@string/connection_button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:text="@string/connection_button"
     />
 </LinearLayout>

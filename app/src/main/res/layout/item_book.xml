@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+    <TextView
+            android:id="@+id/book_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID: "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/book_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Titre: "
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/book_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auteur: "
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/book_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sujet: "
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/book_isbn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ISBN: "
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/book_pages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pages: "
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/book_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Année: "
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/book_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prix: "
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_green_dark" />
+
+    <TextView
+            android:id="@+id/book_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stock: "
+            android:textSize="16sp" />
+</LinearLayout>

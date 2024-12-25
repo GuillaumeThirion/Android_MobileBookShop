@@ -6,4 +6,18 @@
     <string name="client_first_name_placeholder">Entrez le prénom du client</string>
     <string name="new_client_checkbox">Nouveau client ?</string>
     <string name="connection_button">Connexion</string>
+
+    <string name="book_id_label">Id du livre :</string>
+    <string name="book_id_hint">Entrez l\'id du livre</string>
+    <string name="title_label">Titre :</string>
+    <string name="title_hint">Entrez le titre</string>
+    <string name="author_last_name_label">Nom de l\'auteur :</string>
+    <string name="author_last_name_hint">Entrez le nom de l\'auteur</string>
+    <string name="author_first_name_label">Prénom de l\'auteur :</string>
+    <string name="author_first_name_hint">Entrez le prénom de l\'auteur</string>
+    <string name="subject_label">Sujet :</string>
+    <string name="subject_hint">Entrez le sujet</string>
+    <string name="max_price_label">Prix maximum :</string>
+    <string name="max_price_hint">Entrez le prix maximum</string>
+    <string name="search_button">Rechercher</string>
 </resources>

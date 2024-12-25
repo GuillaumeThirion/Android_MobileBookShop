@@ -15,6 +15,9 @@
             android:theme="@style/Theme.MobileBookShop"
             tools:targetApi="31">
         <activity
+                android:name=".ShopActivity"
+                android:exported="false"/>
+        <activity
                 android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>

@@ -1,5 +1,6 @@
 package be.hepl.mobilebookshop;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     if (clientId >= 0) {
                         Toast.makeText(this, "Connexion réussie ! ID client : " + clientId, Toast.LENGTH_LONG).show();
+                        // Création d'un Intent pour lancer l'activité ShopActivity
+                        Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+                        startActivity(intent); // Démarre l'activité ShopActivity
+                        finish(); // Termine MainActivity pour ne pas revenir en arrière
                     } else {
                         Toast.makeText(this, "Erreur lors de la connexion : " + clientId, Toast.LENGTH_LONG).show();
                     }

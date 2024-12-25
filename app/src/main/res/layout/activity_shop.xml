@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ShopActivity">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/book_id_label"
+    />
+
+    <EditText
+            android:id="@+id/book_id_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:autofillHints=""
+            android:hint="@string/book_id_hint"
+            android:background="@android:drawable/edit_text"
+            android:inputType="number"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/title_label"
+    />
+
+    <EditText
+            android:id="@+id/title_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:autofillHints=""
+            android:hint="@string/title_hint"
+            android:background="@android:drawable/edit_text"
+            android:inputType="text"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/author_last_name_label"
+    />
+
+    <EditText
+            android:id="@+id/last_name_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:autofillHints=""
+            android:hint="@string/author_last_name_hint"
+            android:background="@android:drawable/edit_text"
+            android:inputType="text"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/author_first_name_label" />
+
+    <EditText
+            android:id="@+id/first_name_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:autofillHints=""
+            android:hint="@string/author_first_name_hint"
+            android:background="@android:drawable/edit_text"
+            android:inputType="text"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/subject_label"
+    />
+
+    <EditText
+            android:id="@+id/subject_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:autofillHints=""
+            android:hint="@string/subject_hint"
+            android:background="@android:drawable/edit_text"
+            android:inputType="text"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/max_price_label"
+    />
+
+    <EditText
+            android:id="@+id/max_price_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:autofillHints=""
+            android:hint="@string/max_price_hint"
+            android:background="@android:drawable/edit_text"
+            android:inputType="numberDecimal"
+    />
+
+    <Button
+            android:id="@+id/search_button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/search_button"
+    />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/books_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:clipToPadding="false"
+    />
+</LinearLayout>
