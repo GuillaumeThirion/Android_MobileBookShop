@@ -1,4 +1,5 @@
 <resources>
+    <!-- activity_main -->
     <string name="app_name">mobileBookShop</string>
     <string name="client_last_name_label">Nom du client :</string>
     <string name="client_last_name_placeholder">Entrez le nom du client</string>
@@ -7,6 +8,9 @@
     <string name="new_client_checkbox">Nouveau client ?</string>
     <string name="connection_button">Connexion</string>
 
+    <!-- activity_shop -->
+    <string name="logout_button">Déconnexion</string>
+    <string name="caddy_button">Voir le panier</string>
     <string name="book_id_label">Id du livre :</string>
     <string name="book_id_hint">Entrez l\'id du livre</string>
     <string name="title_label">Titre :</string>
@@ -20,4 +24,7 @@
     <string name="max_price_label">Prix maximum :</string>
     <string name="max_price_hint">Entrez le prix maximum</string>
     <string name="search_button">Rechercher</string>
+
+    <!-- book_element -->
+    <string name="add_to_caddy_button">Ajouter au panier</string>
 </resources>

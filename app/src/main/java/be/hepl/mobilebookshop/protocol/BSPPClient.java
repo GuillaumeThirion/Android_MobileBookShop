@@ -1,4 +1,4 @@
-package be.hepl.mobilebookshop;
+package be.hepl.mobilebookshop.protocol;
 
 import android.content.Context;
 import be.hepl.entity.BookElement;

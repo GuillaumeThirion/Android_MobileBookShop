@@ -1,4 +1,4 @@
-package be.hepl.mobilebookshop;
+package be.hepl.mobilebookshop.activity;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import be.hepl.entity.BookElement;
+import be.hepl.mobilebookshop.protocol.BSPPClient;
+import be.hepl.mobilebookshop.util.BooksAdapter;
+import be.hepl.mobilebookshop.R;
 
 import java.util.ArrayList;
 

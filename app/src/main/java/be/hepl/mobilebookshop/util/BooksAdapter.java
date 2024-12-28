@@ -1,4 +1,4 @@
-package be.hepl.mobilebookshop;
+package be.hepl.mobilebookshop.util;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import be.hepl.entity.BookElement;
+import be.hepl.mobilebookshop.R;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_book, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_element, parent, false);
         return new BookViewHolder(view);
     }
 
@@ -39,8 +40,8 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         holder.isbnTextView.setText("ISBN: " + book.getISBN());
         holder.pagesTextView.setText("Pages: " + book.getPageCount());
         holder.yearTextView.setText("Année: " + book.getPublishYear());
-        holder.priceTextView.setText(String.format("Prix: %.2f €", book.getPrice()));
-        holder.stockTextView.setText("Stock: " + book.getStockQuantity());
+        holder.priceTextView.setText(String.format("Prix: %.2f€", book.getPrice()));
+        holder.stockTextView.setText("Quantité en stock: " + book.getStockQuantity());
     }
 
     @Override

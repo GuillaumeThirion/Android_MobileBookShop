@@ -15,10 +15,10 @@
             android:theme="@style/Theme.MobileBookShop"
             tools:targetApi="31">
         <activity
-                android:name=".ShopActivity"
+                android:name=".activity.ShopActivity"
                 android:exported="false"/>
         <activity
-                android:name=".MainActivity"
+                android:name=".activity.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

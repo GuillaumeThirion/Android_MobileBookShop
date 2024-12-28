@@ -2,131 +2,181 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ShopActivity">
+        tools:context=".activity.ShopActivity">
 
-    <TextView
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/book_id_label"
-    />
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-    <EditText
-            android:id="@+id/book_id_field"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:autofillHints=""
-            android:hint="@string/book_id_hint"
-            android:background="@android:drawable/edit_text"
-            android:inputType="number"
-    />
+        <Button
+                android:id="@+id/logout_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/logout_button"
+        />
 
-    <TextView
+        <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+        />
+
+        <Button
+                android:id="@+id/caddy_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/caddy_button"
+        />
+    </LinearLayout>
+
+    <ScrollView
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/title_label"
-    />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:fadeScrollbars="false">
 
-    <EditText
-            android:id="@+id/title_field"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:autofillHints=""
-            android:hint="@string/title_hint"
-            android:background="@android:drawable/edit_text"
-            android:inputType="text"
-    />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <TextView
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/book_id_label"
+            />
+
+            <EditText
+                    android:id="@+id/book_id_field"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:autofillHints=""
+                    android:hint="@string/book_id_hint"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="number"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/title_label"
+            />
+
+            <EditText
+                    android:id="@+id/title_field"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:autofillHints=""
+                    android:hint="@string/title_hint"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="text"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/author_last_name_label"
+            />
+
+            <EditText
+                    android:id="@+id/last_name_field"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:autofillHints=""
+                    android:hint="@string/author_last_name_hint"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="text"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/author_first_name_label"/>
+
+            <EditText
+                    android:id="@+id/first_name_field"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:autofillHints=""
+                    android:hint="@string/author_first_name_hint"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="text"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/subject_label"
+            />
+
+            <EditText
+                    android:id="@+id/subject_field"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:autofillHints=""
+                    android:hint="@string/subject_hint"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="text"
+            />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/max_price_label"
+            />
+
+            <EditText
+                    android:id="@+id/max_price_field"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:autofillHints=""
+                    android:hint="@string/max_price_hint"
+                    android:background="@android:drawable/edit_text"
+                    android:inputType="numberDecimal"
+            />
+
+            <Button
+                    android:id="@+id/search_button"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/search_button"
+            />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Barre horizontale -->
+    <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/author_last_name_label"
-    />
-
-    <EditText
-            android:id="@+id/last_name_field"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:autofillHints=""
-            android:hint="@string/author_last_name_hint"
-            android:background="@android:drawable/edit_text"
-            android:inputType="text"
-    />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/author_first_name_label" />
-
-    <EditText
-            android:id="@+id/first_name_field"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:autofillHints=""
-            android:hint="@string/author_first_name_hint"
-            android:background="@android:drawable/edit_text"
-            android:inputType="text"
-    />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/subject_label"
-    />
-
-    <EditText
-            android:id="@+id/subject_field"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:autofillHints=""
-            android:hint="@string/subject_hint"
-            android:background="@android:drawable/edit_text"
-            android:inputType="text"
-    />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/max_price_label"
-    />
-
-    <EditText
-            android:id="@+id/max_price_field"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:autofillHints=""
-            android:hint="@string/max_price_hint"
-            android:background="@android:drawable/edit_text"
-            android:inputType="numberDecimal"
-    />
-
-    <Button
-            android:id="@+id/search_button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/search_button"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:attr/dividerHorizontal"
     />
 
     <androidx.recyclerview.widget.RecyclerView
