@@ -1,5 +1,7 @@
 package be.hepl.mobilebookshop.activity;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.widget.*;
@@ -23,6 +25,9 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        // Références aux vues
+        Button logoutButton = findViewById(R.id.logout_button);
+        Button caddyButton = findViewById(R.id.caddy_button);
         bookIdField = findViewById(R.id.book_id_field);
         titleField = findViewById(R.id.title_field);
         lastNameField = findViewById(R.id.last_name_field);
@@ -36,8 +41,11 @@ public class ShopActivity extends AppCompatActivity {
         booksAdapter = new BooksAdapter(new ArrayList<>());
         booksRecyclerView.setAdapter(booksAdapter);
 
-        // Gère le clic sur le bouton de recherche
+        // Gestion du clic sur le bouton de recherche
         searchButton.setOnClickListener(v -> performSearch());
+
+        // Gestion du clic sur le bouton de logout
+        logoutButton.setOnClickListener(v -> new LogoutTask().execute());
     }
 
     private void performSearch() {
@@ -75,23 +83,55 @@ public class ShopActivity extends AppCompatActivity {
             }
         }
 
-        Integer finalBookId = bookId;
-        String finalTitle = title;
-        String finalLastName = lastName;
-        String finalFirstName = firstName;
-        String finalSubjectName = subjectName;
-        Float finalMaxPrice = maxPrice;
+        // Exécution d'une AsyncTask pour rechercher les livres
+        new BookSearchTask().execute(bookId, title, lastName, firstName, subjectName, maxPrice);
+    }
 
-        new Thread(() -> {
-            ArrayList<BookElement> results = BSPPClient.selectBook(finalBookId, finalTitle, finalLastName, finalFirstName, finalSubjectName, finalMaxPrice);
+    private class LogoutTask extends AsyncTask<Void, Void, Void> {
 
-            runOnUiThread(() -> {
-                if (results.isEmpty()) {
-                    Toast.makeText(this, "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
-                } else {
-                    booksAdapter.updateBooks(results);
-                }
-            });
-        }).start();
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // Ferme la connexion avec le serveur (ce qui revient à annuler le panier)
+            BSPPClient.cancelCaddy();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            // Redirige l'utilisateur vers la MainActivity après la déconnexion
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private class BookSearchTask extends AsyncTask<Object, Void, ArrayList<BookElement>> {
+
+        @Override
+        protected ArrayList<BookElement> doInBackground(Object... params) {
+            Integer bookId = (Integer) params[0];
+            String title = (String) params[1];
+            String lastName = (String) params[2];
+            String firstName = (String) params[3];
+            String subjectName = (String) params[4];
+            Float maxPrice = (Float) params[5];
+
+            // Effectue la recherche dans le client BSPP
+            return BSPPClient.selectBook(bookId, title, lastName, firstName, subjectName, maxPrice);
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<BookElement> results) {
+            super.onPostExecute(results);
+
+            // Met à jour l'interface utilisateur après la recherche
+            if (results.isEmpty()) {
+                Toast.makeText(ShopActivity.this, "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
+            } else {
+                booksAdapter.updateBooks(results);
+            }
+        }
     }
 }

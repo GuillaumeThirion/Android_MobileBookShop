@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         EditText lastNameInput = findViewById(R.id.last_name_input);
         EditText firstNameInput = findViewById(R.id.first_name_input);
         CheckBox newClientCheckbox = findViewById(R.id.new_client_checkbox);
-        Button connectButton = findViewById(R.id.connect_button);
+        Button loginButton = findViewById(R.id.login_button);
 
-        // Gestion du clic sur le bouton de connexion
-        connectButton.setOnClickListener(v -> {
+        // Gestion du clic sur le bouton de login
+        loginButton.setOnClickListener(v -> {
             // Récupération des données utilisateur
             String lastName = lastNameInput.getText().toString().trim();
             String firstName = firstNameInput.getText().toString().trim();
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Exécution de l'AsyncTask
+            // Exécution d'une AsyncTask pour effectuer le login du client
             new LoginTask(lastName, firstName, isNewClient).execute();
         });
     }

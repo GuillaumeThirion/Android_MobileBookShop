@@ -27,4 +27,9 @@
 
     <!-- book_element -->
     <string name="add_to_caddy_button">Ajouter au panier</string>
+
+    <!-- activity_caddy -->
+    <string name="back_button">Retour</string>
+    <string name="clear_caddy_button">Vider le panier</string>
+    <string name="pay_caddy_button">Payer</string>
 </resources>

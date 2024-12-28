@@ -15,6 +15,9 @@
             android:theme="@style/Theme.MobileBookShop"
             tools:targetApi="31">
         <activity
+                android:name=".activity.CaddyActivity"
+                android:exported="false"/>
+        <activity
                 android:name=".activity.ShopActivity"
                 android:exported="false"/>
         <activity

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.CaddyActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+        <Button
+                android:id="@+id/logout_button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/logout_button"
+                android:backgroundTint="@color/red"
+        />
+
+        <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+        />
+
+        <Button
+                android:id="@+id/shop_button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/back_button"
+                android:backgroundTint="@color/grey"
+        />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/books_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:clipToPadding="false"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+
+        <Button
+                android:id="@+id/clear_caddy_button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/clear_caddy_button"
+                android:backgroundTint="@color/grey"
+                android:layout_marginEnd="20dp"
+        />
+
+        <Button
+                android:id="@+id/pay_caddy_button"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/pay_caddy_button"
+                android:backgroundTint="@color/blue"
+        />
+    </LinearLayout>
+</LinearLayout>
