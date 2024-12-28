@@ -2,10 +2,8 @@ package be.hepl.mobilebookshop;
 
 import android.content.Context;
 import be.hepl.entity.BookElement;
-import be.hepl.responses.*;
-import be.hepl.responses.BSPP.*;
-import be.hepl.requests.*;
-import be.hepl.requests.BSPP.*;
+import be.hepl.protocol.bspp.requests.*;
+import be.hepl.protocol.bspp.responses.*;
 
 import java.io.*;
 import java.net.Socket;

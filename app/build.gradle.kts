@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    implementation(files("libs/shared-objects.jar"))
+    implementation(files("libs/common-objects.jar"))
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

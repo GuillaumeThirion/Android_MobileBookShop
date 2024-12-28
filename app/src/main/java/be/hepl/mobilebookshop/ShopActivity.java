@@ -72,12 +72,23 @@ public class ShopActivity extends AppCompatActivity {
             }
         }
 
-        ArrayList<BookElement> results = BSPPClient.selectBook(bookId, title, lastName, firstName, subjectName, maxPrice);
+        Integer finalBookId = bookId;
+        String finalTitle = title;
+        String finalLastName = lastName;
+        String finalFirstName = firstName;
+        String finalSubjectName = subjectName;
+        Float finalMaxPrice = maxPrice;
 
-        if (results.isEmpty()) {
-            Toast.makeText(this, "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
-        } else {
-            booksAdapter.updateBooks(results);
-        }
+        new Thread(() -> {
+            ArrayList<BookElement> results = BSPPClient.selectBook(finalBookId, finalTitle, finalLastName, finalFirstName, finalSubjectName, finalMaxPrice);
+
+            runOnUiThread(() -> {
+                if (results.isEmpty()) {
+                    Toast.makeText(this, "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
+                } else {
+                    booksAdapter.updateBooks(results);
+                }
+            });
+        }).start();
     }
 }

@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "mobileBookShop"
+rootProject.name = "Android_MobileBookShop"
 include(":app")

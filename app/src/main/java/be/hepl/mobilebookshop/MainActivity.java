@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     if (clientId >= 0) {
                         Toast.makeText(this, "Connexion réussie ! ID client : " + clientId, Toast.LENGTH_LONG).show();
+
                         // Création d'un Intent pour lancer l'activité ShopActivity
                         Intent intent = new Intent(MainActivity.this, ShopActivity.class);
                         startActivity(intent); // Démarre l'activité ShopActivity
