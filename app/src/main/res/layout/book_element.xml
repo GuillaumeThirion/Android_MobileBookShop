@@ -43,14 +43,14 @@
     />
 
     <TextView
-            android:id="@+id/book_pages"
+            android:id="@+id/book_page_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
     />
 
     <TextView
-            android:id="@+id/book_year"
+            android:id="@+id/book_publish_year"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -64,14 +64,14 @@
     />
 
     <TextView
-            android:id="@+id/book_stock"
+            android:id="@+id/book_stock_quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
     />
 
     <Button
-            android:id="@+id/add_caddy_button"
+            android:id="@+id/add_to_caddy_button"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

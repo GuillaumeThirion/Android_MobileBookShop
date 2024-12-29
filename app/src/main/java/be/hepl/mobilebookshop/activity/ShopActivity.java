@@ -41,11 +41,19 @@ public class ShopActivity extends AppCompatActivity {
         booksAdapter = new BooksAdapter(new ArrayList<>());
         booksRecyclerView.setAdapter(booksAdapter);
 
-        // Gestion du clic sur le bouton de recherche
+        // Gestion du clic sur le bouton "Rechercher"
         searchButton.setOnClickListener(v -> performSearch());
 
-        // Gestion du clic sur le bouton de logout
+        // Gestion du clic sur le bouton "Déconnexion"
         logoutButton.setOnClickListener(v -> new LogoutTask().execute());
+
+        // Gestion du clic sur le bouton "Voir le panier"
+        caddyButton.setOnClickListener(v -> {
+            // Lance CaddyActivity
+            Intent intent = new Intent(getApplicationContext(), CaddyActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void performSearch() {
@@ -118,7 +126,7 @@ public class ShopActivity extends AppCompatActivity {
             String subjectName = (String) params[4];
             Float maxPrice = (Float) params[5];
 
-            // Effectue la recherche dans le client BSPP
+            // Effectue la requête de recherche de livres
             return BSPPClient.selectBook(bookId, title, lastName, firstName, subjectName, maxPrice);
         }
 
@@ -128,7 +136,7 @@ public class ShopActivity extends AppCompatActivity {
 
             // Met à jour l'interface utilisateur après la recherche
             if (results.isEmpty()) {
-                Toast.makeText(ShopActivity.this, "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
             } else {
                 booksAdapter.updateBooks(results);
             }

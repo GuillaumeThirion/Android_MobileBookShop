@@ -32,4 +32,8 @@
     <string name="back_button">Retour</string>
     <string name="clear_caddy_button">Vider le panier</string>
     <string name="pay_caddy_button">Payer</string>
+
+    <!-- caddy_item_element -->
+    <string name="decrease_quantity_button">-</string>
+    <string name="increase_quantity_button">+</string>
 </resources>

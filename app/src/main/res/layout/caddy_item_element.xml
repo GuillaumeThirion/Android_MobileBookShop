@@ -7,7 +7,7 @@
         android:padding="8dp">
 
     <TextView
-            android:id="@+id/caddy_book_id"
+            android:id="@+id/book_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -15,14 +15,14 @@
     />
 
     <TextView
-            android:id="@+id/caddy_book_title"
+            android:id="@+id/book_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
     />
 
     <TextView
-            android:id="@+id/caddy_book_price"
+            android:id="@+id/book_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -37,11 +37,11 @@
                 android:id="@+id/decrease_quantity_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
+                android:text="@string/decrease_quantity_button"
         />
 
         <TextView
-                android:id="@+id/caddy_book_quantity"
+                android:id="@+id/book_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -51,7 +51,7 @@
                 android:id="@+id/increase_quantity_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
+                android:text="@string/increase_quantity_button"
         />
     </LinearLayout>
 </LinearLayout>
