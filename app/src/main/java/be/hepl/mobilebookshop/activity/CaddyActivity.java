@@ -2,18 +2,18 @@ package be.hepl.mobilebookshop.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import be.hepl.entity.CaddyItemElement;
 import be.hepl.mobilebookshop.R;
-import be.hepl.mobilebookshop.protocol.BSPPClient;
+import be.hepl.mobilebookshop.asynctask.ClearCaddyTask;
+import be.hepl.mobilebookshop.asynctask.LogoutTask;
+import be.hepl.mobilebookshop.asynctask.PayCaddyTask;
 import be.hepl.mobilebookshop.util.CaddyItemsAdapter;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
@@ -36,108 +36,51 @@ public class CaddyActivity extends AppCompatActivity {
         RecyclerView caddyRecyclerView = findViewById(R.id.caddy_recycler_view);
 
         caddyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        caddyItemsAdapter = new CaddyItemsAdapter(CaddyManager.getCaddyItems());
+        caddyItemsAdapter = new CaddyItemsAdapter(CaddyManager.getCaddyItems(), this);
         caddyRecyclerView.setAdapter(caddyItemsAdapter);
 
         // Gestion du clic sur le bouton "Déconnexion"
-        logoutButton.setOnClickListener(v -> new LogoutTask().execute());
+        logoutButton.setOnClickListener(v -> new LogoutTask(this).execute());
 
         // Gestion du clic sur le bouton "Retour"
         backButton.setOnClickListener(v -> {
             // Lance ShopActivity
-            Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+            Intent intent = new Intent(this, ShopActivity.class);
             startActivity(intent);
             finish();
         });
 
         // Gestion du clic sur le bouton "Vider le panier"
-        clearCaddyButton.setOnClickListener(v -> new ClearCaddyTask().execute());
+        clearCaddyButton.setOnClickListener(v -> {
+            new ClearCaddyTask(this, caddyItemsAdapter).execute();
+            updateTotalPrice();
+        });
 
         // Gestion du clic sur le bouton "Payer"
-        payCaddyButton.setOnClickListener(v -> new PayCaddyTask().execute());
+        payCaddyButton.setOnClickListener(v -> new PayCaddyTask(this).execute());
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint({"NotifyDataSetChanged", "DefaultLocale"})
     @Override
     protected void onResume() {
         super.onResume();
+
         // Met à jour le panier à chaque reprise de l'activité
-        ArrayList<CaddyItemElement> caddyItems = CaddyManager.getCaddyItems();
-        Log.d("CaddyActivity", "Caddy items: " + caddyItems);
-        caddyItemsAdapter.updateCaddyItems(caddyItems);
+        caddyItemsAdapter.updateCaddyItems(CaddyManager.getCaddyItems());
+        // Met à jour le prix total
+        updateTotalPrice();
     }
 
-    private class LogoutTask extends AsyncTask<Void, Void, Void> {
+    @SuppressLint("DefaultLocale")
+    public void updateTotalPrice() {
+        float totalPrice = 0.0f;
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            // Ferme la connexion avec le serveur (ce qui revient à annuler le panier)
-            BSPPClient.cancelCaddy();
-            return null;
+        for (CaddyItemElement caddyItem : CaddyManager.getCaddyItems()) {
+            totalPrice += caddyItem.getPrice() * caddyItem.getQuantity();
         }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            // Redirige l'utilisateur vers la MainActivity après la déconnexion
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private class ClearCaddyTask extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            ArrayList<CaddyItemElement> caddyItems = caddyItemsAdapter.getCaddyItems();
-
-            if (caddyItems == null || caddyItems.isEmpty()) {
-                return false;
-            }
-
-            // Vide le panier (supprime tous les articles)
-            for (CaddyItemElement caddyItem : caddyItems) {
-                BSPPClient.delCaddyItem(caddyItem.getBookId(), caddyItem.getQuantity());
-            }
-            CaddyManager.clearCaddy();
-
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean success) {
-            super.onPostExecute(success);
-            caddyItemsAdapter.updateCaddyItems(new ArrayList<>());
-
-            if (success) {
-                Toast.makeText(getApplicationContext(), "Le panier a été vidé", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Le panier est vide !", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private class PayCaddyTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            // Paie le panier
-            BSPPClient.payCaddy();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            // Redirige l'utilisateur vers la MainActivity après le paiement
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        // Référence au TextView du prix total
+        TextView totalPriceTextView = findViewById(R.id.total_price);
+        totalPriceTextView.setText(String.format("Prix total: %.2f€", totalPrice));
     }
 }

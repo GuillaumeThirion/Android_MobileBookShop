@@ -1,30 +1,30 @@
 package be.hepl.mobilebookshop.util;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import be.hepl.entity.BookElement;
 import be.hepl.entity.CaddyItemElement;
 import be.hepl.mobilebookshop.R;
-import be.hepl.mobilebookshop.protocol.BSPPClient;
+import be.hepl.mobilebookshop.activity.ShopActivity;
+import be.hepl.mobilebookshop.asynctask.AddCaddyItemTask;
 
 import java.util.ArrayList;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHolder> {
 
     private final ArrayList<BookElement> books;
+    private final ShopActivity shopActivity;
 
-    public BooksAdapter(ArrayList<BookElement> books) {
+    public BooksAdapter(ArrayList<BookElement> books, ShopActivity shopActivity) {
         this.books = books;
+        this.shopActivity = shopActivity;
     }
 
     @NonNull
@@ -50,7 +50,13 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         holder.stockQuantityTextView.setText("Quantité en stock: " + book.getStockQuantity());
 
         // Gestion du clic sur le bouton "Ajouter au panier"
-        holder.addToCaddyButton.setOnClickListener(v -> new AddToCaddyTask(v.getContext(), book, 1).execute());
+        CaddyItemElement caddyItem = new CaddyItemElement(book.getId(), book.getTitle(), book.getPrice(), 1);
+        holder.addToCaddyButton.setOnClickListener(v -> {
+            // Exécution d'une AsyncTask pour ajouter l'article au panier
+            new AddCaddyItemTask(v.getContext(), null, caddyItem).execute();
+            // Recherche les livres et met à jour l'affichage
+            shopActivity.performSearch();
+        });
     }
 
     @Override
@@ -86,35 +92,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             priceTextView = itemView.findViewById(R.id.book_price);
             stockQuantityTextView = itemView.findViewById(R.id.book_stock_quantity);
             addToCaddyButton = itemView.findViewById(R.id.add_to_caddy_button);
-        }
-    }
-
-    private static class AddToCaddyTask extends AsyncTask<Void, Void, Boolean> {
-        @SuppressLint("StaticFieldLeak")
-        private final Context context;
-        private final BookElement book;
-        private final int quantity;
-
-        public AddToCaddyTask(Context context, BookElement book, int quantity) {
-            this.context = context;
-            this.book = book;
-            this.quantity = quantity;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            // Ajoute un livre au panier
-            return BSPPClient.addCaddyItem(book.getId(), quantity);
-        }
-
-        @Override
-        protected void onPostExecute(Boolean success) {
-            if (success) {
-                CaddyManager.addCaddyItem(new CaddyItemElement(book.getId(), book.getTitle(), book.getPrice(), quantity));
-                Toast.makeText(context, "Livre ajouté au panier", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Erreur lors de l'ajout au panier", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 }

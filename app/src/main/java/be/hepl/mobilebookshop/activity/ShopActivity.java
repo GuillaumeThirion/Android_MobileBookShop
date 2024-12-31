@@ -1,15 +1,14 @@
 package be.hepl.mobilebookshop.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import be.hepl.entity.BookElement;
-import be.hepl.mobilebookshop.protocol.BSPPClient;
+import be.hepl.mobilebookshop.asynctask.BookSearchTask;
+import be.hepl.mobilebookshop.asynctask.LogoutTask;
 import be.hepl.mobilebookshop.util.BooksAdapter;
 import be.hepl.mobilebookshop.R;
 
@@ -38,25 +37,25 @@ public class ShopActivity extends AppCompatActivity {
         RecyclerView booksRecyclerView = findViewById(R.id.books_recycler_view);
 
         booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        booksAdapter = new BooksAdapter(new ArrayList<>());
+        booksAdapter = new BooksAdapter(new ArrayList<>(), this);
         booksRecyclerView.setAdapter(booksAdapter);
 
         // Gestion du clic sur le bouton "Rechercher"
         searchButton.setOnClickListener(v -> performSearch());
 
         // Gestion du clic sur le bouton "Déconnexion"
-        logoutButton.setOnClickListener(v -> new LogoutTask().execute());
+        logoutButton.setOnClickListener(v -> new LogoutTask(this).execute());
 
         // Gestion du clic sur le bouton "Voir le panier"
         caddyButton.setOnClickListener(v -> {
             // Lance CaddyActivity
-            Intent intent = new Intent(getApplicationContext(), CaddyActivity.class);
+            Intent intent = new Intent(this, CaddyActivity.class);
             startActivity(intent);
             finish();
         });
     }
 
-    private void performSearch() {
+    public void performSearch() {
         // Récupère les valeurs des champs
         String bookIdText = bookIdField.getText().toString().trim();
         String title = titleField.getText().toString().trim();
@@ -92,54 +91,6 @@ public class ShopActivity extends AppCompatActivity {
         }
 
         // Exécution d'une AsyncTask pour rechercher les livres
-        new BookSearchTask().execute(bookId, title, lastName, firstName, subjectName, maxPrice);
-    }
-
-    private class LogoutTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            // Ferme la connexion avec le serveur (ce qui revient à annuler le panier)
-            BSPPClient.cancelCaddy();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            // Redirige l'utilisateur vers la MainActivity après la déconnexion
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-    private class BookSearchTask extends AsyncTask<Object, Void, ArrayList<BookElement>> {
-
-        @Override
-        protected ArrayList<BookElement> doInBackground(Object... params) {
-            Integer bookId = (Integer) params[0];
-            String title = (String) params[1];
-            String lastName = (String) params[2];
-            String firstName = (String) params[3];
-            String subjectName = (String) params[4];
-            Float maxPrice = (Float) params[5];
-
-            // Effectue la requête de recherche de livres
-            return BSPPClient.selectBook(bookId, title, lastName, firstName, subjectName, maxPrice);
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<BookElement> results) {
-            super.onPostExecute(results);
-
-            // Met à jour l'interface utilisateur après la recherche
-            if (results.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
-            } else {
-                booksAdapter.updateBooks(results);
-            }
-        }
+        new BookSearchTask(this, booksAdapter).execute(bookId, title, lastName, firstName, subjectName, maxPrice);
     }
 }

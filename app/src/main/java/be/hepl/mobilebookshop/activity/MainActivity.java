@@ -1,7 +1,5 @@
 package be.hepl.mobilebookshop.activity;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -9,7 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import be.hepl.mobilebookshop.R;
-import be.hepl.mobilebookshop.protocol.BSPPClient;
+import be.hepl.mobilebookshop.asynctask.LoginTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,52 +36,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Exécution d'une AsyncTask pour effectuer le login du client
-            new LoginTask(lastName, firstName, isNewClient).execute();
+            new LoginTask(this, lastName, firstName, isNewClient).execute();
         });
-    }
-
-    private class LoginTask extends AsyncTask<Void, Void, Integer> {
-
-        private final String lastName;
-        private final String firstName;
-        private final boolean isNewClient;
-
-        public LoginTask(String lastName, String firstName, boolean isNewClient) {
-            this.lastName = lastName;
-            this.firstName = firstName;
-            this.isNewClient = isNewClient;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            // Code exécuté avant le début de la tâche (UI Thread)
-            super.onPreExecute();
-            Toast toast = Toast.makeText(getApplicationContext(), "Connexion en cours...", Toast.LENGTH_SHORT);
-            toast.show();
-            new android.os.Handler().postDelayed(toast::cancel, 750);
-        }
-
-        @Override
-        protected Integer doInBackground(Void... voids) {
-            // Code exécuté en arrière-plan (thread de fond)
-            return BSPPClient.loginClient(getApplicationContext(), lastName, firstName, isNewClient);
-        }
-
-        @Override
-        protected void onPostExecute(Integer clientId) {
-            // Code exécuté après la fin de la tâche (UI Thread)
-            super.onPostExecute(clientId);
-
-            if (clientId >= 0) {
-                Toast.makeText(getApplicationContext(), "Connexion réussie ! ID client : " + clientId, Toast.LENGTH_SHORT).show();
-
-                // Lance ShopActivity
-                Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Erreur lors de la connexion : " + clientId, Toast.LENGTH_LONG).show();
-            }
-        }
     }
 }

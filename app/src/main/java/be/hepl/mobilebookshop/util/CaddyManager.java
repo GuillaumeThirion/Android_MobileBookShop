@@ -24,6 +24,26 @@ public class CaddyManager {
         caddyItems.add(caddyItem);
     }
 
+    public static void delCaddyItem(CaddyItemElement caddyItem) {
+        // Recherche le livre dans le panier
+        for (CaddyItemElement existingItem : caddyItems) {
+            if (existingItem.getBookId() == caddyItem.getBookId()) {
+                int quantityInCaddy = existingItem.getQuantity();
+                int quantityToDelete = caddyItem.getQuantity();
+
+                if (quantityInCaddy == quantityToDelete) {
+                    // Supprime l'article
+                    caddyItems.remove(existingItem);
+                } else {
+                    // Met à jour la quantité
+                    existingItem.setQuantity(quantityInCaddy - quantityToDelete);
+                }
+
+                return;
+            }
+        }
+    }
+
     public static void clearCaddy() {
         caddyItems.clear();
     }
