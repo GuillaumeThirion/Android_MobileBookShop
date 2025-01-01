@@ -5,19 +5,18 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import be.hepl.entity.CaddyItemElement;
+import be.hepl.mobilebookshop.activity.CaddyActivity;
+import be.hepl.mobilebookshop.activity.ShopActivity;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
-import be.hepl.mobilebookshop.util.CaddyItemsAdapter;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
 public class AddCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
     @SuppressLint("StaticFieldLeak")
     private final Context context;
-    private final CaddyItemsAdapter caddyItemsAdapter;
     private final CaddyItemElement caddyItem;
 
-    public AddCaddyItemTask(Context context, CaddyItemsAdapter caddyItemsAdapter, CaddyItemElement caddyItem) {
+    public AddCaddyItemTask(Context context, CaddyItemElement caddyItem) {
         this.context = context;
-        this.caddyItemsAdapter = caddyItemsAdapter;
         this.caddyItem = caddyItem;
     }
 
@@ -33,9 +32,14 @@ public class AddCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
             // Ajoute l'article localement
             CaddyManager.addCaddyItem(caddyItem);
 
-            if (caddyItemsAdapter != null) {
+            if (context instanceof ShopActivity shopActivity) {
+                // Recherche les livres et met à jour l'affichage du magasin
+                shopActivity.performSearch();
+            } else if (context instanceof CaddyActivity caddyActivity) {
                 // Met à jour l'affichage du panier
-                caddyItemsAdapter.updateCaddyItems(CaddyManager.getCaddyItems());
+                caddyActivity.getCaddyItemsAdapter().updateCaddyItems(CaddyManager.getCaddyItems());
+                // Met à jour le prix total
+                caddyActivity.updateTotalPrice();
             }
         } else {
             Toast.makeText(context, "Erreur lors de l'ajout au panier", Toast.LENGTH_SHORT).show();

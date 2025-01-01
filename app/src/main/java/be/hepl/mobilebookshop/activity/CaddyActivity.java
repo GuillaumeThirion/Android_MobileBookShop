@@ -17,11 +17,12 @@ import be.hepl.mobilebookshop.asynctask.PayCaddyTask;
 import be.hepl.mobilebookshop.util.CaddyItemsAdapter;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
-import java.util.ArrayList;
-
 public class CaddyActivity extends AppCompatActivity {
 
     private CaddyItemsAdapter caddyItemsAdapter;
+
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +52,7 @@ public class CaddyActivity extends AppCompatActivity {
         });
 
         // Gestion du clic sur le bouton "Vider le panier"
-        clearCaddyButton.setOnClickListener(v -> {
-            new ClearCaddyTask(this, caddyItemsAdapter).execute();
-            updateTotalPrice();
-        });
+        clearCaddyButton.setOnClickListener(v -> new ClearCaddyTask(this).execute());
 
         // Gestion du clic sur le bouton "Payer"
         payCaddyButton.setOnClickListener(v -> new PayCaddyTask(this).execute());
@@ -71,15 +69,26 @@ public class CaddyActivity extends AppCompatActivity {
         updateTotalPrice();
     }
 
+
+    /* GETTERS */
+
+    public CaddyItemsAdapter getCaddyItemsAdapter() {
+        return caddyItemsAdapter;
+    }
+
+
+    /* OTHER METHODS */
+
     @SuppressLint("DefaultLocale")
     public void updateTotalPrice() {
         float totalPrice = 0.0f;
 
+        // Calcul du prix total
         for (CaddyItemElement caddyItem : CaddyManager.getCaddyItems()) {
             totalPrice += caddyItem.getPrice() * caddyItem.getQuantity();
         }
 
-        // Référence au TextView du prix total
+        // Met à jour le TextView du prix total
         TextView totalPriceTextView = findViewById(R.id.total_price);
         totalPriceTextView.setText(String.format("Prix total: %.2f€", totalPrice));
     }

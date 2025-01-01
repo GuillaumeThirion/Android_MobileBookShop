@@ -51,12 +51,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
 
         // Gestion du clic sur le bouton "Ajouter au panier"
         CaddyItemElement caddyItem = new CaddyItemElement(book.getId(), book.getTitle(), book.getPrice(), 1);
-        holder.addToCaddyButton.setOnClickListener(v -> {
-            // Exécution d'une AsyncTask pour ajouter l'article au panier
-            new AddCaddyItemTask(v.getContext(), null, caddyItem).execute();
-            // Recherche les livres et met à jour l'affichage
-            shopActivity.performSearch();
-        });
+        holder.addToCaddyButton.setOnClickListener(v -> new AddCaddyItemTask(shopActivity, caddyItem).execute());
     }
 
     @Override

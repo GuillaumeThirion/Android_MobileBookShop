@@ -5,19 +5,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import be.hepl.entity.CaddyItemElement;
+import be.hepl.mobilebookshop.activity.CaddyActivity;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
-import be.hepl.mobilebookshop.util.CaddyItemsAdapter;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
 public class DelCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
     @SuppressLint("StaticFieldLeak")
     private final Context context;
-    private final CaddyItemsAdapter caddyItemsAdapter;
     private final CaddyItemElement caddyItem;
 
-    public DelCaddyItemTask(Context context, CaddyItemsAdapter caddyItemsAdapter, CaddyItemElement caddyItem) {
+    public DelCaddyItemTask(Context context, CaddyItemElement caddyItem) {
         this.context = context;
-        this.caddyItemsAdapter = caddyItemsAdapter;
         this.caddyItem = caddyItem;
     }
 
@@ -32,8 +30,13 @@ public class DelCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
         if (success) {
             // Supprime l'article localement
             CaddyManager.delCaddyItem(caddyItem);
-            // Met à jour l'affichage du panier
-            caddyItemsAdapter.updateCaddyItems(CaddyManager.getCaddyItems());
+
+            if (context instanceof CaddyActivity caddyActivity) {
+                // Met à jour l'affichage du panier
+                caddyActivity.getCaddyItemsAdapter().updateCaddyItems(CaddyManager.getCaddyItems());
+                // Met à jour le prix total
+                caddyActivity.updateTotalPrice();
+            }
         } else {
             Toast.makeText(context, "Erreur lors de la suppression", Toast.LENGTH_SHORT).show();
         }

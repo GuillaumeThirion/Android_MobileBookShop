@@ -48,16 +48,10 @@ public class CaddyItemsAdapter extends RecyclerView.Adapter<CaddyItemsAdapter.Ca
         CaddyItemElement updateItem = new CaddyItemElement(caddyItem.getBookId(), caddyItem.getTitle(), caddyItem.getPrice(), 1);
 
         // Gestion du clic sur le bouton "+"
-        holder.increaseQuantityButton.setOnClickListener(v -> {
-            new AddCaddyItemTask(v.getContext(), this, updateItem).execute();
-            caddyActivity.updateTotalPrice();
-        });
+        holder.increaseQuantityButton.setOnClickListener(v -> new AddCaddyItemTask(caddyActivity, updateItem).execute());
 
         // Gestion du clic sur le bouton "-"
-        holder.decreaseQuantityButton.setOnClickListener(v -> {
-            new DelCaddyItemTask(v.getContext(), this, updateItem).execute();
-            caddyActivity.updateTotalPrice();
-        });
+        holder.decreaseQuantityButton.setOnClickListener(v -> new DelCaddyItemTask(caddyActivity, updateItem).execute());
     }
 
     @Override
