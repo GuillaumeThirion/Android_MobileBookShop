@@ -19,13 +19,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/logout_button"
                 android:backgroundTint="@color/red"
-        />
+                tools:ignore="TextContrastCheck"/>
 
         <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-        />
+                android:layout_weight="1"/>
 
         <Button
                 android:id="@+id/back_button"
@@ -33,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/back_button"
                 android:backgroundTint="@color/grey"
-        />
+                tools:ignore="TextContrastCheck"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,8 +41,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:paddingTop="8dp"
-            android:clipToPadding="false"
-    />
+            android:clipToPadding="false"/>
 
     <!-- Barre horizontale -->
     <View
@@ -51,16 +49,14 @@
             android:layout_height="3dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="?android:attr/dividerHorizontal"
-    />
+            android:background="?android:attr/dividerHorizontal"/>
 
     <TextView
             android:id="@+id/total_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_marginStart="20dp"
-    />
+            android:layout_marginStart="20dp"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +72,7 @@
                 android:text="@string/clear_caddy_button"
                 android:backgroundTint="@color/grey"
                 android:layout_marginEnd="20dp"
-                tools:ignore="ButtonStyle"/>
+                tools:ignore="ButtonStyle,TextContrastCheck"/>
 
         <Button
                 android:id="@+id/pay_caddy_button"
@@ -84,6 +80,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pay_caddy_button"
                 android:backgroundTint="@color/blue"
-                tools:ignore="ButtonStyle"/>
+                tools:ignore="ButtonStyle,TextContrastCheck"/>
     </LinearLayout>
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import be.hepl.entity.CaddyItemElement;
+import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.activity.CaddyActivity;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
 import be.hepl.mobilebookshop.util.CaddyManager;
@@ -16,9 +17,15 @@ public class ClearCaddyTask extends AsyncTask<Void, Void, Boolean> {
     @SuppressLint("StaticFieldLeak")
     private final Context context;
 
+
+    /* CONSTRUCTOR */
+
     public ClearCaddyTask(Context context) {
         this.context = context;
     }
+
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected Boolean doInBackground(Void... voids) {
@@ -48,9 +55,8 @@ public class ClearCaddyTask extends AsyncTask<Void, Void, Boolean> {
                 // Met à jour le prix total
                 caddyActivity.updateTotalPrice();
             }
-            Toast.makeText(context, "Le panier a été vidé", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Le panier est vide !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.toast_clear_caddy_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

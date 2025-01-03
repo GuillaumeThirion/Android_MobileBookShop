@@ -5,7 +5,11 @@ import be.hepl.entity.CaddyItemElement;
 import java.util.ArrayList;
 
 public class CaddyManager {
+
     private static final ArrayList<CaddyItemElement> caddyItems = new ArrayList<>();
+
+
+    /* STATIC METHODS */
 
     public static ArrayList<CaddyItemElement> getCaddyItems() {
         return new ArrayList<>(caddyItems); // Renvoie une copie de la liste pour éviter les modifications externes

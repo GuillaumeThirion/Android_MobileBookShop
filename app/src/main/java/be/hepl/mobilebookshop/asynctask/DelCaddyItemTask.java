@@ -5,19 +5,27 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import be.hepl.entity.CaddyItemElement;
+import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.activity.CaddyActivity;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
 public class DelCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
+
     @SuppressLint("StaticFieldLeak")
     private final Context context;
     private final CaddyItemElement caddyItem;
+
+
+    /* CONSTRUCTOR */
 
     public DelCaddyItemTask(Context context, CaddyItemElement caddyItem) {
         this.context = context;
         this.caddyItem = caddyItem;
     }
+
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected Boolean doInBackground(Void... voids) {
@@ -38,7 +46,7 @@ public class DelCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
                 caddyActivity.updateTotalPrice();
             }
         } else {
-            Toast.makeText(context, "Erreur lors de la suppression", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.toast_del_caddy_item_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

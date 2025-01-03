@@ -5,20 +5,28 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import be.hepl.entity.CaddyItemElement;
+import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.activity.CaddyActivity;
 import be.hepl.mobilebookshop.activity.ShopActivity;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
 public class AddCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
+
     @SuppressLint("StaticFieldLeak")
     private final Context context;
     private final CaddyItemElement caddyItem;
+
+
+    /* CONSTRUCTOR */
 
     public AddCaddyItemTask(Context context, CaddyItemElement caddyItem) {
         this.context = context;
         this.caddyItem = caddyItem;
     }
+
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected Boolean doInBackground(Void... voids) {
@@ -42,7 +50,7 @@ public class AddCaddyItemTask extends AsyncTask<Void, Void, Boolean> {
                 caddyActivity.updateTotalPrice();
             }
         } else {
-            Toast.makeText(context, "Erreur lors de l'ajout au panier", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.toast_add_caddy_item_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

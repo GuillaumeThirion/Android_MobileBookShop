@@ -22,10 +22,16 @@ public class CaddyItemsAdapter extends RecyclerView.Adapter<CaddyItemsAdapter.Ca
     private final ArrayList<CaddyItemElement> caddyItems;
     private final CaddyActivity caddyActivity;
 
+
+    /* CONSTRUCTOR */
+
     public CaddyItemsAdapter(ArrayList<CaddyItemElement> caddyItems, CaddyActivity caddyActivity) {
         this.caddyItems = caddyItems;
         this.caddyActivity = caddyActivity;
     }
+
+
+    /* OVERRIDE METHODS */
 
     @NonNull
     @Override
@@ -39,10 +45,17 @@ public class CaddyItemsAdapter extends RecyclerView.Adapter<CaddyItemsAdapter.Ca
     public void onBindViewHolder(@NonNull CaddyItemViewHolder holder, int position) {
         CaddyItemElement caddyItem = caddyItems.get(position);
 
-        holder.bookIdTextView.setText("ID: " + caddyItem.getBookId());
-        holder.titleTextView.setText("Titre: " + caddyItem.getTitle());
-        holder.priceTextView.setText(String.format("Prix: %.2f€", caddyItem.getPrice()));
-        holder.quantityTextView.setText("Quantité: " + caddyItem.getQuantity());
+        // Récupère le contexte depuis caddyActivity
+        String bookIdLabel = caddyActivity.getString(R.string.book_id_label);
+        String titleLabel = caddyActivity.getString(R.string.title_label);
+        String priceLabel = caddyActivity.getString(R.string.book_price_label);
+        String quantityLabel = caddyActivity.getString(R.string.quantity_label);
+
+        // Utilisation des chaînes localisées
+        holder.bookIdTextView.setText(bookIdLabel + " " + caddyItem.getBookId());
+        holder.titleTextView.setText(titleLabel + " " + caddyItem.getTitle());
+        holder.priceTextView.setText(String.format(priceLabel + " %.2f€", caddyItem.getPrice()));
+        holder.quantityTextView.setText(quantityLabel + " " + caddyItem.getQuantity());
 
         // Article à ajouter ou à supprimer lors d'un clic sur les boutons "+" et "-"
         CaddyItemElement updateItem = new CaddyItemElement(caddyItem.getBookId(), caddyItem.getTitle(), caddyItem.getPrice(), 1);
@@ -59,6 +72,9 @@ public class CaddyItemsAdapter extends RecyclerView.Adapter<CaddyItemsAdapter.Ca
         return caddyItems.size();
     }
 
+
+    /* OTHER METHODS */
+
     @SuppressLint("NotifyDataSetChanged")
     public void updateCaddyItems(ArrayList<CaddyItemElement> newCaddyItems) {
         // Vide la liste actuelle des articles
@@ -69,7 +85,10 @@ public class CaddyItemsAdapter extends RecyclerView.Adapter<CaddyItemsAdapter.Ca
         notifyDataSetChanged();
     }
 
-    static class CaddyItemViewHolder extends RecyclerView.ViewHolder {
+
+    /* INNER CLASSES */
+
+    public static class CaddyItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView bookIdTextView, titleTextView, priceTextView, quantityTextView;
         Button increaseQuantityButton, decreaseQuantityButton;

@@ -19,13 +19,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/logout_button"
                 android:backgroundTint="@color/red"
-        />
+                tools:ignore="TextContrastCheck"/>
 
         <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-        />
+                android:layout_weight="1"/>
 
         <Button
                 android:id="@+id/caddy_button"
@@ -33,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/caddy_button"
                 android:backgroundTint="@color/grey"
-        />
+                tools:ignore="TextContrastCheck"/>
     </LinearLayout>
 
     <ScrollView
@@ -54,8 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
-                    android:text="@string/book_id_label"
-            />
+                    android:text="@string/book_id_label"/>
 
             <EditText
                     android:id="@+id/book_id_field"
@@ -66,15 +64,14 @@
                     android:hint="@string/book_id_hint"
                     android:background="@android:drawable/edit_text"
                     android:inputType="number"
-            />
+                    tools:ignore="TextContrastCheck"/>
 
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
-                    android:text="@string/title_label"
-            />
+                    android:text="@string/title_label"/>
 
             <EditText
                     android:id="@+id/title_field"
@@ -85,15 +82,14 @@
                     android:hint="@string/title_hint"
                     android:background="@android:drawable/edit_text"
                     android:inputType="text"
-            />
+                    tools:ignore="TextContrastCheck"/>
 
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
-                    android:text="@string/author_last_name_label"
-            />
+                    android:text="@string/author_last_name_label"/>
 
             <EditText
                     android:id="@+id/last_name_field"
@@ -104,7 +100,7 @@
                     android:hint="@string/author_last_name_hint"
                     android:background="@android:drawable/edit_text"
                     android:inputType="text"
-            />
+                    tools:ignore="TextContrastCheck"/>
 
             <TextView
                     android:layout_width="match_parent"
@@ -122,15 +118,14 @@
                     android:hint="@string/author_first_name_hint"
                     android:background="@android:drawable/edit_text"
                     android:inputType="text"
-            />
+                    tools:ignore="TextContrastCheck"/>
 
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
-                    android:text="@string/subject_label"
-            />
+                    android:text="@string/subject_label"/>
 
             <EditText
                     android:id="@+id/subject_field"
@@ -140,16 +135,14 @@
                     android:autofillHints=""
                     android:hint="@string/subject_hint"
                     android:background="@android:drawable/edit_text"
-                    android:inputType="text"
-            />
+                    android:inputType="text"/>
 
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
-                    android:text="@string/max_price_label"
-            />
+                    android:text="@string/max_price_label"/>
 
             <EditText
                     android:id="@+id/max_price_field"
@@ -159,16 +152,14 @@
                     android:autofillHints=""
                     android:hint="@string/max_price_hint"
                     android:background="@android:drawable/edit_text"
-                    android:inputType="numberDecimal"
-            />
+                    android:inputType="numberDecimal"/>
 
             <Button
                     android:id="@+id/search_button"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/search_button"
-            />
+                    android:text="@string/search_button"/>
         </LinearLayout>
     </ScrollView>
 
@@ -178,8 +169,7 @@
             android:layout_height="3dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="?android:attr/dividerHorizontal"
-    />
+            android:background="?android:attr/dividerHorizontal"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/books_recycler_view"
@@ -187,6 +177,5 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:paddingTop="8dp"
-            android:clipToPadding="false"
-    />
+            android:clipToPadding="false"/>
 </LinearLayout>

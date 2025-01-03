@@ -1,16 +1,19 @@
 package be.hepl.mobilebookshop.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import be.hepl.mobilebookshop.asynctask.BookSearchTask;
-import be.hepl.mobilebookshop.asynctask.LogoutTask;
+import be.hepl.mobilebookshop.asynctask.SelectBookTask;
+import be.hepl.mobilebookshop.asynctask.CancelCaddyTask;
 import be.hepl.mobilebookshop.util.BooksAdapter;
 import be.hepl.mobilebookshop.R;
+import be.hepl.mobilebookshop.util.LanguageManager;
 
 import java.util.ArrayList;
 
@@ -18,6 +21,9 @@ public class ShopActivity extends AppCompatActivity {
 
     private EditText bookIdField, titleField, lastNameField, firstNameField, subjectField, maxPriceField;
     private BooksAdapter booksAdapter;
+
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class ShopActivity extends AppCompatActivity {
         searchButton.setOnClickListener(v -> performSearch());
 
         // Gestion du clic sur le bouton "Déconnexion"
-        logoutButton.setOnClickListener(v -> new LogoutTask(this).execute());
+        logoutButton.setOnClickListener(v -> new CancelCaddyTask(this).execute());
 
         // Gestion du clic sur le bouton "Voir le panier"
         caddyButton.setOnClickListener(v -> {
@@ -54,6 +60,16 @@ public class ShopActivity extends AppCompatActivity {
             finish();
         });
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        // Applique la langue configurée
+        Configuration config = LanguageManager.getConfiguration();
+        super.attachBaseContext(newBase.createConfigurationContext(config));
+    }
+
+
+    /* OTHER METHODS */
 
     public void performSearch() {
         // Récupère les valeurs des champs
@@ -69,7 +85,7 @@ public class ShopActivity extends AppCompatActivity {
             try {
                 bookId = Integer.parseInt(bookIdText);
             } catch (NumberFormatException ex) {
-                Toast.makeText(this, "L'id du livre doit être un nombre entier", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_book_id_error), Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -85,12 +101,12 @@ public class ShopActivity extends AppCompatActivity {
             try {
                 maxPrice = Float.parseFloat(maxPriceText);
             } catch (NumberFormatException ex) {
-                Toast.makeText(this, "Le prix du livre doit être un nombre décimal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_max_price_error), Toast.LENGTH_SHORT).show();
                 return;
             }
         }
 
         // Exécution d'une AsyncTask pour rechercher les livres
-        new BookSearchTask(this, booksAdapter).execute(bookId, title, lastName, firstName, subjectName, maxPrice);
+        new SelectBookTask(this, booksAdapter).execute(bookId, title, lastName, firstName, subjectName, maxPrice);
     }
 }

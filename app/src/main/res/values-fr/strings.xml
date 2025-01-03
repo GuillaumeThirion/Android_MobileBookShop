@@ -1,0 +1,79 @@
+<resources>
+    <!-- activity_main -->
+    <string name="app_name">mobileBookShop</string>
+    <string name="app_title">Mobile Book Shop</string>
+    <string name="client_last_name_label">Nom :</string>
+    <string name="client_last_name_placeholder">Entrez votre nom</string>
+    <string name="client_first_name_label">Prénom :</string>
+    <string name="client_first_name_placeholder">Entrez votre prénom</string>
+    <string name="new_client_checkbox">Nouveau client ?</string>
+    <string name="login_button">Connexion</string>
+    <string name="toast_fill_all_fields">Veuillez remplir tous les champs</string>
+
+    <!-- activity_shop -->
+    <string name="logout_button">Déconnexion</string>
+    <string name="caddy_button">Voir le panier</string>
+    <string name="book_id_label">ID du livre :</string>
+    <string name="book_id_hint">Entrez l\'ID du livre</string>
+    <string name="title_label">Titre :</string>
+    <string name="title_hint">Entrez le titre</string>
+    <string name="author_last_name_label">Nom de l\'auteur :</string>
+    <string name="author_last_name_hint">Entrez le nom de l\'auteur</string>
+    <string name="author_first_name_label">Prénom de l\'auteur :</string>
+    <string name="author_first_name_hint">Entrez le prénom de l\'auteur</string>
+    <string name="subject_label">Sujet :</string>
+    <string name="subject_hint">Entrez le sujet</string>
+    <string name="max_price_label">Prix maximum :</string>
+    <string name="max_price_hint">Entrez le prix maximum</string>
+    <string name="search_button">Rechercher</string>
+    <string name="toast_book_id_error">L\'id du livre doit être un nombre entier</string>
+    <string name="toast_max_price_error">Le prix maximum doit être un nombre décimal</string>
+
+    <!-- activity_caddy -->
+    <string name="back_button">Retour</string>
+    <string name="total_price_label">Prix total :</string>
+    <string name="clear_caddy_button">Vider le panier</string>
+    <string name="pay_caddy_button">Payer</string>
+
+    <!-- book_element -->
+    <string name="book_author_label">Auteur :</string>
+    <string name="book_isbn_label">ISBN :</string>
+    <string name="book_page_count_label">Nombre de pages :</string>
+    <string name="book_publish_year_label">Année de publication :</string>
+    <string name="book_price_label">Prix :</string>
+    <string name="book_stock_quantity_label">Quantité en stock :</string>
+    <string name="add_to_caddy_button">Ajouter au panier</string>
+
+    <!-- caddy_item_element -->
+    <string name="quantity_label">Quantité :</string>
+    <string name="decrease_quantity_button">-</string>
+    <string name="increase_quantity_button">+</string>
+
+    <!-- AddCaddyItemTask -->
+    <string name="toast_add_caddy_item_error">Le livre n\'a pas pu être ajouté !</string>
+
+    <!-- CancelCaddyTask -->
+    <string name="toast_cancel_caddy_success">Le panier actuel a été supprimé !</string>
+
+    <!-- ClearCaddyTask -->
+    <string name="toast_clear_caddy_error">Le panier est déjà vide !</string>
+
+    <!-- DelCaddyItemTask -->
+    <string name="toast_del_caddy_item_error">Le livre n\'a pas pu être supprimé !</string>
+
+    <!-- LoginTask -->
+    <string name="toast_connection">Connexion en cours…</string>
+    <string name="toast_login_success">Connexion réussie ! ID client :</string>
+    <string name="toast_login_error_label">Erreur de login :</string>
+    <string name="toast_login_error_client_already_exists">Le client que vous essayez d\'ajouter existe déjà !</string>
+    <string name="toast_login_error_client_does_not_exist">Le client que vous essayez de connecter n\'existe pas !</string>
+    <string name="toast_login_error_fields_not_complete">Tous les champs ne sont pas complets !</string>
+    <string name="toast_login_error_other">Erreur de création de la socket client ou erreur de flux I/O !</string>
+
+    <!-- PayCaddyTask -->
+    <string name="toast_pay_caddy_success">Paiement effectué avec succès !</string>
+    <string name="toast_pay_caddy_error">Le panier n\'a pas pu être payé !</string>
+
+    <!-- SelectBookTask -->
+    <string name="toast_no_book_found">Aucun livre n\'a été trouvé !</string>
+</resources>

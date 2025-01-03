@@ -2,39 +2,83 @@
     <!-- activity_main -->
     <string name="app_name">mobileBookShop</string>
     <string name="app_title">Mobile Book Shop</string>
-    <string name="client_last_name_label">Nom du client :</string>
-    <string name="client_last_name_placeholder">Entrez le nom du client</string>
-    <string name="client_first_name_label">Prénom du client :</string>
-    <string name="client_first_name_placeholder">Entrez le prénom du client</string>
-    <string name="new_client_checkbox">Nouveau client ?</string>
-    <string name="connection_button">Connexion</string>
+    <string name="client_last_name_label">Last name:</string>
+    <string name="client_last_name_placeholder">Enter your last name</string>
+    <string name="client_first_name_label">First name:</string>
+    <string name="client_first_name_placeholder">Enter your first name</string>
+    <string name="new_client_checkbox">New client?</string>
+    <string name="login_button">Login</string>
+    <string name="toast_fill_all_fields">Please fill in all fields</string>
+
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
 
     <!-- activity_shop -->
-    <string name="logout_button">Déconnexion</string>
-    <string name="caddy_button">Voir le panier</string>
-    <string name="book_id_label">Id du livre :</string>
-    <string name="book_id_hint">Entrez l\'id du livre</string>
-    <string name="title_label">Titre :</string>
-    <string name="title_hint">Entrez le titre</string>
-    <string name="author_last_name_label">Nom de l\'auteur :</string>
-    <string name="author_last_name_hint">Entrez le nom de l\'auteur</string>
-    <string name="author_first_name_label">Prénom de l\'auteur :</string>
-    <string name="author_first_name_hint">Entrez le prénom de l\'auteur</string>
-    <string name="subject_label">Sujet :</string>
-    <string name="subject_hint">Entrez le sujet</string>
-    <string name="max_price_label">Prix maximum :</string>
-    <string name="max_price_hint">Entrez le prix maximum</string>
-    <string name="search_button">Rechercher</string>
-
-    <!-- book_element -->
-    <string name="add_to_caddy_button">Ajouter au panier</string>
+    <string name="logout_button">Logout</string>
+    <string name="caddy_button">View caddy</string>
+    <string name="book_id_label">Book ID:</string>
+    <string name="book_id_hint">Enter the book ID</string>
+    <string name="title_label">Title:</string>
+    <string name="title_hint">Enter the title</string>
+    <string name="author_last_name_label">Author\'s last name:</string>
+    <string name="author_last_name_hint">Enter the author\'s last name</string>
+    <string name="author_first_name_label">Author\'s first name:</string>
+    <string name="author_first_name_hint">Enter the author\'s first name</string>
+    <string name="subject_label">Subject:</string>
+    <string name="subject_hint">Enter the subject</string>
+    <string name="max_price_label">Max price:</string>
+    <string name="max_price_hint">Enter the maximum price</string>
+    <string name="search_button">Search</string>
+    <string name="toast_book_id_error">The book ID must be an integer</string>
+    <string name="toast_max_price_error">The maximum price must be a decimal number</string>
 
     <!-- activity_caddy -->
-    <string name="back_button">Retour</string>
-    <string name="clear_caddy_button">Vider le panier</string>
-    <string name="pay_caddy_button">Payer</string>
+    <string name="back_button">Back</string>
+    <string name="total_price_label">Total price:</string>
+    <string name="clear_caddy_button">Clear caddy</string>
+    <string name="pay_caddy_button">Pay</string>
+
+    <!-- book_element -->
+    <string name="book_author_label">Author:</string>
+    <string name="book_isbn_label">ISBN:</string>
+    <string name="book_page_count_label">Page count:</string>
+    <string name="book_publish_year_label">Publish year:</string>
+    <string name="book_price_label">Price:</string>
+    <string name="book_stock_quantity_label">Stock quantity:</string>
+    <string name="add_to_caddy_button">Add to caddy</string>
 
     <!-- caddy_item_element -->
+    <string name="quantity_label">Quantity:</string>
     <string name="decrease_quantity_button">-</string>
     <string name="increase_quantity_button">+</string>
+
+    <!-- AddCaddyItemTask -->
+    <string name="toast_add_caddy_item_error">The book could not be added!</string>
+
+    <!-- CancelCaddyTask -->
+    <string name="toast_cancel_caddy_success">The current caddy has been deleted!</string>
+
+    <!-- ClearCaddyTask -->
+    <string name="toast_clear_caddy_error">The caddy is already empty!</string>
+
+    <!-- DelCaddyItemTask -->
+    <string name="toast_del_caddy_item_error">The book could not be deleted!</string>
+
+    <!-- LoginTask -->
+    <string name="toast_connection">Connecting…</string>
+    <string name="toast_login_success">Login successful! Client ID:</string>
+    <string name="toast_login_error_label">Login error:</string>
+    <string name="toast_login_error_client_already_exists">The client you are trying to add already exists!</string>
+    <string name="toast_login_error_client_does_not_exist">The client you are trying to log in does not exist!</string>
+    <string name="toast_login_error_fields_not_complete">Not all fields are complete!</string>
+    <string name="toast_login_error_other">Client socket creation error or I/O stream error!</string>
+
+    <!-- PayCaddyTask -->
+    <string name="toast_pay_caddy_success">Payment successful!</string>
+    <string name="toast_pay_caddy_error">The caddy could not be paid!</string>
+
+    <!-- SelectBookTask -->
+    <string name="toast_no_book_found">No book has been found!</string>
 </resources>

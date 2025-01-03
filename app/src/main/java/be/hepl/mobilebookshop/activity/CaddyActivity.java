@@ -1,7 +1,9 @@
 package be.hepl.mobilebookshop.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -12,10 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import be.hepl.entity.CaddyItemElement;
 import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.asynctask.ClearCaddyTask;
-import be.hepl.mobilebookshop.asynctask.LogoutTask;
+import be.hepl.mobilebookshop.asynctask.CancelCaddyTask;
 import be.hepl.mobilebookshop.asynctask.PayCaddyTask;
 import be.hepl.mobilebookshop.util.CaddyItemsAdapter;
 import be.hepl.mobilebookshop.util.CaddyManager;
+import be.hepl.mobilebookshop.util.LanguageManager;
 
 public class CaddyActivity extends AppCompatActivity {
 
@@ -41,7 +44,7 @@ public class CaddyActivity extends AppCompatActivity {
         caddyRecyclerView.setAdapter(caddyItemsAdapter);
 
         // Gestion du clic sur le bouton "Déconnexion"
-        logoutButton.setOnClickListener(v -> new LogoutTask(this).execute());
+        logoutButton.setOnClickListener(v -> new CancelCaddyTask(this).execute());
 
         // Gestion du clic sur le bouton "Retour"
         backButton.setOnClickListener(v -> {
@@ -69,6 +72,13 @@ public class CaddyActivity extends AppCompatActivity {
         updateTotalPrice();
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        // Applique la langue configurée
+        Configuration config = LanguageManager.getConfiguration();
+        super.attachBaseContext(newBase.createConfigurationContext(config));
+    }
+
 
     /* GETTERS */
 
@@ -89,7 +99,8 @@ public class CaddyActivity extends AppCompatActivity {
         }
 
         // Met à jour le TextView du prix total
+        String totalPriceLabel = getString(R.string.total_price_label);
         TextView totalPriceTextView = findViewById(R.id.total_price);
-        totalPriceTextView.setText(String.format("Prix total: %.2f€", totalPrice));
+        totalPriceTextView.setText(String.format(totalPriceLabel + " %.2f€", totalPrice));
     }
 }

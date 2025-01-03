@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp">
@@ -11,64 +11,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textStyle="bold"
-    />
+            android:textStyle="bold"/>
 
     <TextView
             android:id="@+id/book_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_isbn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_page_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_publish_year"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/book_stock_quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-    />
+            android:textSize="16sp"/>
 
     <Button
             android:id="@+id/add_to_caddy_button"
@@ -77,5 +68,13 @@
             android:layout_gravity="center"
             android:text="@string/add_to_caddy_button"
             android:backgroundTint="@color/orange"
-    />
+            tools:ignore="TextContrastCheck"/>
+
+    <!-- Barre horizontale -->
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:attr/dividerHorizontal"/>
 </LinearLayout>

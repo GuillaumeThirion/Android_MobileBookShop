@@ -4,29 +4,41 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
+import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.activity.MainActivity;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
 import be.hepl.mobilebookshop.util.CaddyManager;
 
-public class LogoutTask extends AsyncTask<Void, Void, Void> {
+public class CancelCaddyTask extends AsyncTask<Void, Void, Boolean> {
 
     @SuppressLint("StaticFieldLeak")
     private final Context context;
 
-    public LogoutTask(Context context) {
+
+    /* CONSTRUCTOR */
+
+    public CancelCaddyTask(Context context) {
         this.context = context;
     }
 
+
+    /* OVERRIDE METHODS */
+
     @Override
-    protected Void doInBackground(Void... voids) {
-        // Annule le panier et ferme la connexion avec le serveur
-        BSPPClient.cancelCaddy();
-        BSPPClient.closeConnection();
-        return null;
+    protected Boolean doInBackground(Void... voids) {
+        // Annule le panier
+        return BSPPClient.cancelCaddy();
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
+    protected void onPostExecute(Boolean success) {
+        if (success) {
+            Toast.makeText(context, context.getString(R.string.toast_cancel_caddy_success), Toast.LENGTH_SHORT).show();
+        }
+
+        // Ferme la connexion avec le serveur
+        BSPPClient.closeConnection();
         // Vide le panier localement
         CaddyManager.clearCaddy();
 

@@ -22,10 +22,16 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     private final ArrayList<BookElement> books;
     private final ShopActivity shopActivity;
 
+
+    /* CONSTRUCTOR */
+
     public BooksAdapter(ArrayList<BookElement> books, ShopActivity shopActivity) {
         this.books = books;
         this.shopActivity = shopActivity;
     }
+
+
+    /* OVERRIDE METHODS */
 
     @NonNull
     @Override
@@ -39,15 +45,27 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         BookElement book = books.get(position);
 
-        holder.idTextView.setText("ID: " + book.getId());
-        holder.titleTextView.setText("Titre: " + book.getTitle());
-        holder.authorTextView.setText("Auteur: " + book.getAuthor());
-        holder.subjectTextView.setText("Sujet: " + book.getSubject());
-        holder.isbnTextView.setText("ISBN: " + book.getISBN());
-        holder.pageCountTextView.setText("Nombre de pages: " + book.getPageCount());
-        holder.publishYearTextView.setText("Année de publication: " + book.getPublishYear());
-        holder.priceTextView.setText(String.format("Prix: %.2f€", book.getPrice()));
-        holder.stockQuantityTextView.setText("Quantité en stock: " + book.getStockQuantity());
+        // Récupère le contexte depuis shopActivity
+        String bookIdLabel = shopActivity.getString(R.string.book_id_label);
+        String titleLabel = shopActivity.getString(R.string.title_label);
+        String authorLabel = shopActivity.getString(R.string.book_author_label);
+        String subjectLabel = shopActivity.getString(R.string.subject_label);
+        String isbnLabel = shopActivity.getString(R.string.book_isbn_label);
+        String pageCountLabel = shopActivity.getString(R.string.book_page_count_label);
+        String publishYearLabel = shopActivity.getString(R.string.book_publish_year_label);
+        String priceLabel = shopActivity.getString(R.string.book_price_label);
+        String stockQuantityLabel = shopActivity.getString(R.string.book_stock_quantity_label);
+
+        // Utilisation des chaînes localisées
+        holder.idTextView.setText(bookIdLabel + " " + book.getId());
+        holder.titleTextView.setText(titleLabel + " " + book.getTitle());
+        holder.authorTextView.setText(authorLabel + " " + book.getAuthor());
+        holder.subjectTextView.setText(subjectLabel + " " + book.getSubject());
+        holder.isbnTextView.setText(isbnLabel + " " + book.getISBN());
+        holder.pageCountTextView.setText(pageCountLabel + " " + book.getPageCount());
+        holder.publishYearTextView.setText(publishYearLabel + " " + book.getPublishYear());
+        holder.priceTextView.setText(String.format(priceLabel + " %.2f€", book.getPrice()));
+        holder.stockQuantityTextView.setText(stockQuantityLabel + " " + book.getStockQuantity());
 
         // Gestion du clic sur le bouton "Ajouter au panier"
         CaddyItemElement caddyItem = new CaddyItemElement(book.getId(), book.getTitle(), book.getPrice(), 1);
@@ -59,6 +77,9 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         return books.size();
     }
 
+
+    /* OTHER METHODS */
+
     @SuppressLint("NotifyDataSetChanged")
     public void updateBooks(ArrayList<BookElement> newBooks) {
         // Vide la liste actuelle des livres
@@ -69,7 +90,10 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
         notifyDataSetChanged();
     }
 
-    static class BookViewHolder extends RecyclerView.ViewHolder {
+
+    /* INNER CLASSES */
+
+    public static class BookViewHolder extends RecyclerView.ViewHolder {
 
         TextView idTextView, titleTextView, authorTextView, subjectTextView;
         TextView isbnTextView, pageCountTextView, publishYearTextView, priceTextView, stockQuantityTextView;

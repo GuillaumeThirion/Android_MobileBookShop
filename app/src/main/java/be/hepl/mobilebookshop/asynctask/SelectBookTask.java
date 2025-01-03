@@ -5,21 +5,28 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import be.hepl.entity.BookElement;
+import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.protocol.BSPPClient;
 import be.hepl.mobilebookshop.util.BooksAdapter;
 
 import java.util.ArrayList;
 
-public class BookSearchTask extends AsyncTask<Object, Void, ArrayList<BookElement>> {
+public class SelectBookTask extends AsyncTask<Object, Void, ArrayList<BookElement>> {
 
     @SuppressLint("StaticFieldLeak")
     private final Context context;
     private final BooksAdapter booksAdapter;
 
-    public BookSearchTask(Context context, BooksAdapter booksAdapter) {
+
+    /* CONSTRUCTOR */
+
+    public SelectBookTask(Context context, BooksAdapter booksAdapter) {
         this.context = context;
         this.booksAdapter = booksAdapter;
     }
+
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected ArrayList<BookElement> doInBackground(Object... params) {
@@ -38,8 +45,9 @@ public class BookSearchTask extends AsyncTask<Object, Void, ArrayList<BookElemen
     protected void onPostExecute(ArrayList<BookElement> results) {
         // Met à jour l'interface utilisateur après la recherche
         if (results.isEmpty()) {
-            Toast.makeText(context, "Aucun livre trouvé", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.toast_no_book_found), Toast.LENGTH_SHORT).show();
+        } else if (booksAdapter != null) {
+            booksAdapter.updateBooks(results);
         }
-        booksAdapter.updateBooks(results);
     }
 }

@@ -1,15 +1,19 @@
 package be.hepl.mobilebookshop.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import be.hepl.mobilebookshop.R;
 import be.hepl.mobilebookshop.asynctask.LoginTask;
+import be.hepl.mobilebookshop.util.LanguageManager;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+    /* OVERRIDE METHODS */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +35,61 @@ public class MainActivity extends AppCompatActivity {
 
             // Vérification de l'entrée utilisateur
             if (lastName.isEmpty() || firstName.isEmpty()) {
-                Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_fill_all_fields), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             // Exécution d'une AsyncTask pour effectuer le login du client
-            new LoginTask(this, lastName, firstName, isNewClient).execute();
+            new LoginTask(this).execute(lastName, firstName, isNewClient);
         });
+
+        // Initialisation du Spinner pour choisir la langue
+        Spinner languageSpinner = findViewById(R.id.language_spinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.languages_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        languageSpinner.setAdapter(adapter);
+
+        // Positionne le Spinner sur la langue actuelle
+        String currentLanguage = LanguageManager.getLanguageCode();
+        if (currentLanguage.equals("en")) {
+            languageSpinner.setSelection(0);
+        } else if (currentLanguage.equals("fr")) {
+            languageSpinner.setSelection(1);
+        }
+
+        // Gestion du changement de langue
+        languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (position == 0) {
+                    changeLanguage("en");
+                } else if (position == 1) {
+                    changeLanguage("fr");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {}
+        });
+    }
+
+    // Change la langue de l'application
+    private void changeLanguage(String languageCode) {
+        // Vérifie la langue actuelle avant de procéder au changement
+        String currentLanguage = Locale.getDefault().getLanguage();
+
+        if (!currentLanguage.equals(languageCode)) {
+            // Stocke la langue dans le singleton
+            LanguageManager.setLanguageCode(languageCode);
+
+            // Change la langue
+            Configuration config = LanguageManager.getConfiguration();
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+            // Recrée l'activité en appliquant les changements de langue
+            recreate();
+        }
     }
 }
