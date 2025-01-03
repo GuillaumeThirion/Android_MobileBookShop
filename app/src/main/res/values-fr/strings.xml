@@ -63,12 +63,12 @@
 
     <!-- LoginTask -->
     <string name="toast_connection">Connexion en cours…</string>
-    <string name="toast_login_success">Connexion réussie ! ID client :</string>
+    <string name="toast_login_success">Connexion réussie ! Voici votre ID de client :</string>
     <string name="toast_login_error_label">Erreur de login :</string>
-    <string name="toast_login_error_client_already_exists">Le client que vous essayez d\'ajouter existe déjà !</string>
-    <string name="toast_login_error_client_does_not_exist">Le client que vous essayez de connecter n\'existe pas !</string>
+    <string name="toast_login_error_client_already_exists">Le client existe déjà !</string>
+    <string name="toast_login_error_client_does_not_exist">Le client n\'existe pas !</string>
     <string name="toast_login_error_fields_not_complete">Tous les champs ne sont pas complets !</string>
-    <string name="toast_login_error_other">Erreur de création de la socket client ou erreur de flux I/O !</string>
+    <string name="toast_login_error_other">Erreur de connexion !</string>
 
     <!-- PayCaddyTask -->
     <string name="toast_pay_caddy_success">Paiement effectué avec succès !</string>

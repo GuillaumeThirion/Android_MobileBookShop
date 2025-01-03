@@ -70,10 +70,10 @@
     <string name="toast_connection">Connecting…</string>
     <string name="toast_login_success">Login successful! Client ID:</string>
     <string name="toast_login_error_label">Login error:</string>
-    <string name="toast_login_error_client_already_exists">The client you are trying to add already exists!</string>
-    <string name="toast_login_error_client_does_not_exist">The client you are trying to log in does not exist!</string>
+    <string name="toast_login_error_client_already_exists">The client already exists!</string>
+    <string name="toast_login_error_client_does_not_exist">The client does not exist!</string>
     <string name="toast_login_error_fields_not_complete">Not all fields are complete!</string>
-    <string name="toast_login_error_other">Client socket creation error or I/O stream error!</string>
+    <string name="toast_login_error_other">Connection error!</string>
 
     <!-- PayCaddyTask -->
     <string name="toast_pay_caddy_success">Payment successful!</string>

@@ -46,7 +46,9 @@ public class SelectBookTask extends AsyncTask<Object, Void, ArrayList<BookElemen
         // Met à jour l'interface utilisateur après la recherche
         if (results.isEmpty()) {
             Toast.makeText(context, context.getString(R.string.toast_no_book_found), Toast.LENGTH_SHORT).show();
-        } else if (booksAdapter != null) {
+        }
+
+        if (booksAdapter != null) {
             booksAdapter.updateBooks(results);
         }
     }
